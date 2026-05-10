@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Golden Cup · Carta Doble Cara</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --choco:  #4D0F0F;
+    --choco2: #6B1A1A;
+    --beige:  #E0C18D;
+    --crema:  #FEF7C2;
+    --muted:  #8B5E3C;
+    --linea:  rgba(77,15,15,0.15);
+  }
+
+  body {
+    background: #d0c8b0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--choco);
+  }
+
+  .instrucciones {
+    background: var(--choco);
+    color: var(--beige);
+    text-align: center;
+    padding: 14px 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .instrucciones span {
+    opacity: 0.6;
+    font-size: 11px;
+    display: block;
+    margin-top: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+  .btn-print {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 22px;
+    background: var(--beige);
+    color: var(--choco);
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  .cara {
+    width: 297mm;
+    height: 210mm;
+    background: var(--crema);
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 52mm 1fr 1fr 1fr;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .col-brand {
+    background: var(--choco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14mm 8mm;
+    gap: 5mm;
+  }
+  .brand-cafe-bar {
+    font-family: 'Oswald', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 4px;
+    color: var(--beige);
+    opacity: 1;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .brand-nombre {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26pt;
+    font-weight: 600;
+    color: var(--beige);
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .brand-nombre small {
+    display: block;
+    font-size: 18pt;
+    font-weight: 300;
+    letter-spacing: 5px;
+  }
+  .brand-linea {
+    width: 30mm;
+    height: 0.5px;
+    background: var(--beige);
+    opacity: 0.4;
+  }
+  .brand-slogan {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6pt;
+    letter-spacing: 2px;
+    color: var(--beige);
+    opacity: 0.85;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .brand-qr {
+    width: 22mm;
+    height: 22mm;
+    border: 1px solid rgba(224,193,141,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+  }
+  .brand-qr-txt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5pt;
+    color: var(--beige);
+    opacity: 0.85;
+    text-align: center;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .col {
+    padding: 8mm 6mm 6mm;
+    border-right: 0.5px solid var(--linea);
+    display: flex;
+    flex-direction: column;
+  }
+  .col:last-child { border-right: none; }
+
+  .sec-tit {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--choco);
+    text-transform: uppercase;
+    padding-bottom: 2.5mm;
+    border-bottom: 1px solid var(--beige);
+    margin-bottom: 2.5mm;
+  }
+  .sec-sep {
+    margin-top: 4mm;
+    padding-top: 3.5mm;
+    border-top: 0.5px solid var(--linea);
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 1.6mm 0;
+    border-bottom: 0.3px solid var(--linea);
+  }
+  .item:last-child { border-bottom: none; }
+  .item-l { flex: 1; }
+  .item-n {
+    font-family: 'Oswald', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--choco);
+    text-transform: uppercase;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .item-d {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5.5pt;
+    font-style: italic;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.45;
+    margin-top: 0.6mm;
+  }
+  .item-p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--choco2);
+    white-space: nowrap;
+    padding-top: 1px;
+    padding-left: 3px;
+    flex-shrink: 0;
+  }
+  .badge {
+    font-size: 4.5pt;
+    border: 0.4px solid var(--choco);
+    padding: 0.5px 3px;
+    border-radius: 1px;
+    letter-spacing: 0.8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--choco);
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .ftable { width: 100%; border-collapse: collapse; margin-top: 1mm; }
+  .ftable th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 5.5pt;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1mm;
+    border-bottom: 0.5px solid var(--linea);
+    font-weight: 400;
+  }
+  .ftable th:first-child { text-align: left; }
+  .ftable td { padding: 1.4mm 1mm; border-bottom: 0.3px solid var(--linea); vertical-align: top; }
+  .ftable tr:last-child td { border-bottom: none; }
+  .fo-n { font-family:'Oswald',sans-serif; font-size:7pt; color:var(--choco); text-transform:uppercase; font-weight:400; letter-spacing:0.5px; }
+  .fo-d { font-family:'Montserrat',sans-serif; font-size:5pt; color:var(--muted); font-style:italic; font-weight:300; margin-top:0.3mm; }
+  .fo-p { font-family:'Oswald',sans-serif; font-size:7pt; color:var(--choco2); text-align:center; font-weight:500; }
+
+  .nota {
+    margin-top: 3mm;
+    padding: 2mm 3mm;
+    border: 0.5px dashed rgba(77,15,15,0.2);
+    border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5.5pt;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  @media print {
+    @page { size: A4 landscape; margin: 0; }
+    body { background: none; }
+    .instrucciones { display: none !important; }
+    .cara { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instrucciones">
+  GOLDEN CUP · CARTA DOBLE CARA · HORIZONTAL (A4 LANDSCAPE)
+  <span>Imprime esta página → voltea la hoja → imprime la segunda página · Resultado: menú físico doble cara</span>
+  <br><button class="btn-print" onclick="window.print()">🖨 IMPRIMIR</button>
+</div>
+
+
+<!-- ══ CARA 1 ══ -->
+<div class="cara">
+
+  <div class="col-brand">
+    <div class="brand-cafe-bar">Café · Bar</div>
+    <div class="brand-nombre">Golden<small>Cup</small></div>
+    <div class="brand-linea"></div>
+    <div class="brand-slogan">Una taza dorada<br>para tu vida</div>
+    <div class="brand-linea"></div>
+    <!-- QR generado dinámicamente -->
+    <canvas id="qr-cara1" width="83" height="83" style="border-radius:3px;background:#FEF7C2;padding:4px;"></canvas>
+    <div class="brand-slogan">Escanea · Carta Digital<br>Chía · 2026</div>
+  </div>
+
+  <!-- Col 1: Clásicas -->
+  <div class="col">
+    <div class="sec-tit">Bebidas Clásicas</div>
+    <div class="item"><div class="item-l"><div class="item-n">Espresso Doble</div><div class="item-d">Doble dosis de espresso puro · carácter intenso y cuerpo denso</div></div><div class="item-p">$4.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Lungo</div><div class="item-d">Extracción larga · espresso suave con notas más dulces</div></div><div class="item-p">$5.000</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Americano</div><div class="item-d">Espresso con agua caliente · limpio, suave y reconfortante</div></div><div class="item-p">$5.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Macchiato</div><div class="item-d">Espresso marcado con una nube de leche espumada</div></div><div class="item-p">$6.000</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cappuccino</div><div class="item-d">Espresso, leche vaporizada y espuma cremosa en partes iguales</div></div><div class="item-p">$8.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cappuccino Caramelo</div><div class="item-d">Cappuccino clásico con toque dulce de sirope de caramelo</div></div><div class="item-p">$9.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cappuccino Vainilla</div><div class="item-d">Cappuccino con el aroma floral y suave de la vainilla natural</div></div><div class="item-p">$9.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Latte</div><div class="item-d">Espresso con abundante leche vaporizada · suave y cremoso</div></div><div class="item-p">$7.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Flat White</div><div class="item-d">Doble espresso con microespuma sedosa · intenso y equilibrado</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Mocaccino</div><div class="item-d">Espresso con leche y chocolate · el encuentro perfecto</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Tinto Campesino</div><div class="item-d">Café de origen filtrado al estilo colombiano tradicional</div></div><div class="item-p">$6.500</div></div>
+  </div>
+
+  <!-- Col 2: Con Licor + Café Frío -->
+  <div class="col">
+    <div class="sec-tit">Bebidas con Licor</div>
+    <div class="item"><div class="item-l"><div class="item-n">Cappuccino Baileys</div><div class="item-d">Cappuccino cremoso con el toque dulce y aterciopelado del Baileys</div></div><div class="item-p">$14.700</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cappuccino con Amaretto</div><div class="item-d">Notas de almendra del Amaretto fundidas en espuma de leche</div></div><div class="item-p">$12.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Café Irlandés</div><div class="item-d">Café fuerte, whiskey irlandés y crema batida · clásico atemporal</div></div><div class="item-p">$15.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Café El Padrino <span class="badge">Firma</span></div><div class="item-d">Espresso, whisky, amaretto y leche vaporizada · suave y cremoso · receta exclusiva</div></div><div class="item-p">$16.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Carajillo — Aguardiente Desquite</div><div class="item-d">Espresso con aguardiente colombiano · maridaje de identidad propia</div></div><div class="item-p">$12.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Carajillo — Ron Amuleto</div><div class="item-d">Espresso con ron añejo · dulce profundidad tropical</div></div><div class="item-p">$12.500</div></div>
+
+    <div class="sec-sep"><div class="sec-tit">Café Frío</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Iced Americano</div><div class="item-d">Espresso sobre hielo con agua · limpio y refrescante</div></div><div class="item-p">$6.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Iced Mocca</div><div class="item-d">Espresso corto con chocolate y leche · cremoso y frío</div></div><div class="item-p">$9.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Iced Latte</div><div class="item-d">Espresso con leche fría y hielo · suave y cremoso al instante</div></div><div class="item-p">$8.800</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cold Brew</div><div class="item-d">Infusión lenta en frío por 12 horas · suave, sin acidez, profundo</div></div><div class="item-p">$9.800</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Café</div><div class="item-d">Espresso corto con limonada natural · refrescante con carácter</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Mojito de Café Sin Licor</div><div class="item-d">Espresso corto, hierbabuena fresca, limón y soda · frescura sin igual</div></div><div class="item-p">$12.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Frappé de Café</div><div class="item-d">Café batido con hielo y leche · espeso, frío y energizante</div></div><div class="item-p">$10.800</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Affogato con Helado <span class="badge">Especial</span></div><div class="item-d">Helado de vainilla ahogado en espresso caliente · contraste sublime</div></div><div class="item-p">$15.900</div></div>
+  </div>
+
+  <!-- Col 3: Filtrados + Chocolates -->
+  <div class="col">
+    <div class="sec-tit">Filtrados Golden</div>
+    <div style="font-family:'Montserrat',sans-serif;font-size:5.5pt;font-style:italic;color:var(--muted);margin-bottom:2mm;text-align:center;font-weight:300">Chemex · V60 · Origami · Prensa Francesa</div>
+    <table class="ftable">
+      <thead><tr><th>Origen</th><th>1 Taza</th><th>2 Tazas</th><th>3 Tazas</th></tr></thead>
+      <tbody>
+        <tr><td><div class="fo-n">Orígenes Lavados</div><div class="fo-d">Perfil limpio · acidez brillante · floral</div></td><td class="fo-p">$8.500</td><td class="fo-p">$12.500</td><td class="fo-p">$16.500</td></tr>
+        <tr><td><div class="fo-n">Bourbon</div><div class="fo-d">Dulzor de panela · cuerpo redondo · frambuesa, ciruelas pasas y sabores exóticos</div></td><td class="fo-p">$10.600</td><td class="fo-p">$17.900</td><td class="fo-p">$23.500</td></tr>
+        <tr><td><div class="fo-n">Geisha</div><div class="fo-d">Jazmín · notas aromáticas y frutales · taza excepcional y elegante</div></td><td class="fo-p">$11.900</td><td class="fo-p">$19.800</td><td class="fo-p">$25.500</td></tr>
+        <tr><td><div class="fo-n">Temporada</div><div class="fo-d">Lote especial rotativo · consultar al barista</div></td><td class="fo-p">$12.900</td><td class="fo-p">$21.000</td><td class="fo-p">$26.900</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-sep"><div class="sec-tit">Chocolates</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">En Agua</div><div class="item-d">Cacao puro disuelto en agua caliente · oscuro e intenso</div></div><div class="item-p">$6.000</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">En Leche</div><div class="item-d">Cacao cremoso con leche entera · clásico reconfortante</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Chocolisto o Milo Caliente</div><div class="item-d">Bebida de malta y chocolate caliente · favorito de siempre</div></div><div class="item-p">$7.800</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Chocolisto o Milo Frío</div><div class="item-d">Con leche fría y hielo · dulce y energizante</div></div><div class="item-p">$8.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Frappé de Milo</div><div class="item-d">Milo batido con hielo y leche · espeso e irresistible</div></div><div class="item-p">$9.800</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Malteada de Chocolate</div><div class="item-d">Leche malteada con chocolate y helado · textura densa y cremosa</div></div><div class="item-p">$12.500</div></div>
+  </div>
+
+</div><!-- /cara 1 -->
+
+
+<!-- ══ CARA 2 ══ -->
+<div class="cara">
+
+  <div class="col-brand" style="justify-content:space-between;padding:8mm 6mm;">
+    <div style="text-align:center;">
+      <div class="brand-cafe-bar">Café · Bar</div>
+      <div class="brand-nombre" style="font-size:20pt;">Golden<small style="font-size:14pt;">Cup</small></div>
+      <div class="brand-linea" style="margin:3mm auto;"></div>
+    </div>
+
+    <!-- Infográfico proceso del café -->
+    <svg viewBox="0 0 120 310" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:110px;margin:0 auto;display:block;opacity:0.9;">
+      <defs>
+        <style>
+          .ic { fill:none; stroke:#E0C18D; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+          .ic-fill { fill:rgba(224,193,141,0.15); stroke:#E0C18D; stroke-width:1.2; stroke-linecap:round; }
+          .lbl { font-family:'Oswald',sans-serif; font-size:6px; fill:#E0C18D; text-anchor:middle; letter-spacing:0.5px; opacity:0.85; }
+          .arr { fill:none; stroke:#E0C18D; stroke-width:0.8; marker-end:url(#ar); opacity:0.6; }
+        </style>
+        <marker id="ar" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+          <path d="M0,0 L4,2 L0,4 Z" fill="#E0C18D" opacity="0.6"/>
+        </marker>
+      </defs>
+
+      <!-- 1. Semilla / Planta -->
+      <g transform="translate(60,20)">
+        <!-- brote -->
+        <line x1="0" y1="8" x2="0" y2="-2" class="ic"/>
+        <path d="M0,2 Q6,-4 10,-8" class="ic"/>
+        <path d="M0,0 Q-6,-4 -9,-8" class="ic"/>
+        <ellipse cx="0" cy="9" rx="4" ry="2" class="ic-fill"/>
+      </g>
+      <text x="60" y="38" class="lbl">CULTIVO</text>
+
+      <!-- flecha -->
+      <path d="M60,41 Q75,46 75,52" class="arr"/>
+
+      <!-- 2. Cosecha / recolección -->
+      <g transform="translate(75,60)">
+        <circle cx="0" cy="-4" r="5" class="ic-fill"/>
+        <line x1="-3" y1="-1" x2="-8" y2="4" class="ic"/>
+        <line x1="3" y1="-1" x2="8" y2="4" class="ic"/>
+        <path d="M-7,4 Q0,8 7,4" class="ic"/>
+        <!-- cerezas -->
+        <circle cx="-10" cy="-8" r="2.5" class="ic-fill"/>
+        <circle cx="-6" cy="-11" r="2.5" class="ic-fill"/>
+        <circle cx="-2" cy="-9" r="2.5" class="ic-fill"/>
+      </g>
+      <text x="75" y="78" class="lbl">COSECHA</text>
+
+      <!-- flecha -->
+      <path d="M65,81 Q50,86 46,92" class="arr"/>
+
+      <!-- 3. Secado (sol + granos) -->
+      <g transform="translate(42,100)">
+        <!-- sol -->
+        <circle cx="0" cy="0" r="5" class="ic-fill"/>
+        <line x1="0" y1="-8" x2="0" y2="-11" class="ic"/>
+        <line x1="0" y1="8" x2="0" y2="11" class="ic"/>
+        <line x1="8" y1="0" x2="11" y2="0" class="ic"/>
+        <line x1="-8" y1="0" x2="-11" y2="0" class="ic"/>
+        <line x1="5.5" y1="-5.5" x2="7.5" y2="-7.5" class="ic"/>
+        <line x1="-5.5" y1="-5.5" x2="-7.5" y2="-7.5" class="ic"/>
+        <line x1="5.5" y1="5.5" x2="7.5" y2="7.5" class="ic"/>
+        <line x1="-5.5" y1="5.5" x2="-7.5" y2="7.5" class="ic"/>
+      </g>
+      <text x="42" y="119" class="lbl">SECADO</text>
+
+      <!-- flecha -->
+      <path d="M55,115 Q70,118 74,124" class="arr"/>
+
+      <!-- 4. Saco / almacenamiento -->
+      <g transform="translate(78,132)">
+        <path d="M-10,-10 Q-12,0 -10,10 Q0,14 10,10 Q12,0 10,-10 Q0,-14 -10,-10Z" class="ic-fill"/>
+        <path d="M-7,-8 Q0,-4 7,-8" class="ic"/>
+        <ellipse cx="0" cy="-10" rx="5" ry="2" class="ic-fill"/>
+        <!-- granos arriba del saco -->
+        <ellipse cx="-4" cy="-17" rx="3" ry="2" transform="rotate(-20,-4,-17)" class="ic-fill"/>
+        <ellipse cx="2" cy="-19" rx="3" ry="2" transform="rotate(10,2,-19)" class="ic-fill"/>
+        <ellipse cx="7" cy="-16" rx="3" ry="2" transform="rotate(30,7,-16)" class="ic-fill"/>
+      </g>
+      <text x="78" y="152" class="lbl">ALMACÉN</text>
+
+      <!-- flecha -->
+      <path d="M65,155 Q50,160 46,166" class="arr"/>
+
+      <!-- 5. Tostado (máquina tostadora) -->
+      <g transform="translate(40,175)">
+        <!-- tolva -->
+        <path d="M-6,-12 L6,-12 L4,-4 L-4,-4 Z" class="ic-fill"/>
+        <!-- cuerpo máquina -->
+        <rect x="-9" y="-4" width="18" height="14" rx="2" class="ic-fill"/>
+        <!-- rueda -->
+        <circle cx="0" cy="3" r="5" class="ic"/>
+        <line x1="0" y1="-2" x2="0" y2="8" class="ic"/>
+        <line x1="-5" y1="3" x2="5" y2="3" class="ic"/>
+        <!-- manija -->
+        <line x1="9" y1="6" x2="14" y2="8" class="ic"/>
+        <circle cx="14" cy="8" r="1.5" class="ic-fill"/>
+      </g>
+      <text x="40" y="196" class="lbl">TOSTADO</text>
+
+      <!-- flecha -->
+      <path d="M55,199 Q70,202 74,208" class="arr"/>
+
+      <!-- 6. Molido (molino manual) -->
+      <g transform="translate(78,218)">
+        <!-- cuerpo -->
+        <rect x="-8" y="-8" width="16" height="16" rx="1" class="ic-fill"/>
+        <!-- manija arriba -->
+        <line x1="0" y1="-8" x2="0" y2="-14" class="ic"/>
+        <line x1="-4" y1="-14" x2="4" y2="-14" class="ic"/>
+        <circle cx="-4" cy="-14" r="1.5" class="ic-fill"/>
+        <!-- tolva -->
+        <path d="M-5,-8 L5,-8 L3,-3 L-3,-3 Z" class="ic-fill"/>
+        <!-- cajón abajo -->
+        <rect x="-8" y="8" width="16" height="5" rx="1" class="ic-fill"/>
+      </g>
+      <text x="78" y="238" class="lbl">MOLIDO</text>
+
+      <!-- flecha -->
+      <path d="M65,241 Q50,246 46,252" class="arr"/>
+
+      <!-- 7. Taza final -->
+      <g transform="translate(42,265)">
+        <!-- platillo -->
+        <ellipse cx="0" cy="12" rx="14" ry="3" class="ic-fill"/>
+        <!-- taza -->
+        <path d="M-10,12 L-9,-4 Q-9,-10 0,-10 Q9,-10 9,-4 L10,12 Z" class="ic-fill"/>
+        <!-- asa -->
+        <path d="M10,0 Q18,0 18,6 Q18,12 10,12" class="ic"/>
+        <!-- vapor -->
+        <path d="M-4,-12 Q-2,-16 -4,-20" class="ic" stroke-width="0.8" opacity="0.7"/>
+        <path d="M0,-13 Q2,-17 0,-21" class="ic" stroke-width="0.8" opacity="0.7"/>
+        <path d="M4,-12 Q6,-16 4,-20" class="ic" stroke-width="0.8" opacity="0.7"/>
+      </g>
+      <text x="42" y="287" class="lbl">EN TU TAZA</text>
+    </svg>
+
+    <div class="brand-linea" style="margin:2mm auto;"></div>
+    <div class="brand-slogan" style="font-size:5.5pt;">Todos los precios<br>incluyen IVA</div>
+    <canvas id="qr-cara2" width="60" height="60" style="border-radius:2px;background:#FEF7C2;padding:3px;margin-top:2mm;"></canvas>
+  </div>
+
+  <!-- Col 1: Lattes + Infusiones -->
+  <div class="col">
+    <div class="sec-tit">Lattes Especiales</div>
+    <div class="item"><div class="item-l"><div class="item-n">Chai Latte</div><div class="item-d">Mezcla de especias chai con leche vaporizada · cálido y aromático</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Golden Milk Latte</div><div class="item-d">Cúrcuma, jengibre y canela con leche caliente · dorado y reconfortante</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Matcha Latte</div><div class="item-d">Té verde japonés ceremonial con leche vaporizada · terso y vegetal</div></div><div class="item-p">$9.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Latte de Frutos Rojos Frío</div><div class="item-d">Base de frutos rojos con leche fría · vibrante y afrutado</div></div><div class="item-p">$11.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">ChocoChai Latte</div><div class="item-d">Chocolate belga con especias chai y leche · decadente y especiado</div></div><div class="item-p">$10.500</div></div>
+
+    <div class="sec-sep"><div class="sec-tit">Infusiones Especiales Munay</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Chai en Agua</div><div class="item-d">Mezcla ancestral de especias en agua caliente · sin leche, puro sabor</div></div><div class="item-p">$6.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Matcha en Agua</div><div class="item-d">Polvo de té verde ceremonial · antioxidante, energizante y sereno</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Luz de Luna</div><div class="item-d">Mezcla floral y herbal · delicada, aromática y relajante</div></div><div class="item-p">$8.000</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Elixir de Carmín</div><div class="item-d">Hibisco y frutos rojos · color intenso, acidez suave y vitamínica</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Ensueño Bereber</div><div class="item-d">Canela, cardamomo y pétalos · especiado, dulce y misterioso</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Cacao Vital</div><div class="item-d">Cacao crudo con especias · energizante, nutritivo y reconfortante</div></div><div class="item-p">$7.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Infusión de Temporada</div><div class="item-d">Lote especial rotativo · consultar al barista por la selección del día</div></div><div class="item-p" style="font-size:6pt;font-style:italic;color:var(--muted);padding-top:2px">A consultar</div></div>
+  </div>
+
+  <!-- Col 2: Sodas y Limonadas -->
+  <div class="col">
+    <div class="sec-tit">Sodas Artesanales</div>
+    <div class="item"><div class="item-l"><div class="item-n">Soda de Frutos Rojos</div><div class="item-d">Fresas, frambuesas y moras con soda · vibrante y refrescante</div></div><div class="item-p">$11.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Soda de Frutos Amarillos</div><div class="item-d">Maracuyá, mango y soda · tropical y brillante</div></div><div class="item-p">$11.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Soda de Lychees & Fresa</div><div class="item-d">Lychees exóticos con fresa y soda · dulce y floral</div></div><div class="item-p">$11.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Soda de Maracuyá</div><div class="item-d">Maracuyá natural con soda · intensa y afrutada</div></div><div class="item-p">$11.900</div></div>
+
+    <div class="sec-sep"><div class="sec-tit">Limonadas</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Coco</div><div class="item-d">Limón con crema de coco · exótica, cremosa y tropical</div></div><div class="item-p">$10.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada Piña Colada</div><div class="item-d">Piña, coco y limón · sabor de playa en cada sorbo</div></div><div class="item-p">$10.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Maracumango</div><div class="item-d">Maracuyá con mango y limón · dulce, ácida y tropical</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Mango Biche</div><div class="item-d">Mango verde con limón · ácida, picante y muy colombiana</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Tamarindo</div><div class="item-d">Tamarindo natural con limón · agridulce y refrescante</div></div><div class="item-p">$8.900</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Cereza</div><div class="item-d">Cereza con limón fresco · dulce, suave y de bello color</div></div><div class="item-p">$9.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada de Hierbabuena</div><div class="item-d">Limón con hierbabuena fresca · fresca, verde y reconfortante</div></div><div class="item-p">$8.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada Natural</div><div class="item-d">Limón recién exprimido con agua y hielo · la clásica de siempre</div></div><div class="item-p">$6.500</div></div>
+    <div class="item"><div class="item-l"><div class="item-n">Limonada Brasilera</div><div class="item-d">Limón, hielo, leche en polvo y leche condensada · fresca, suave y con delicada cremosidad</div></div><div class="item-p">$8.900</div></div>
+  </div>
+
+  <!-- Col 3: Repostería + Visítanos -->
+  <div class="col" style="justify-content:space-between">
+    <div>
+      <div class="sec-tit">Tortas & Hojaldres</div>
+      <div class="item"><div class="item-l"><div class="item-n">Almojábana</div><div class="item-d">Bizcocho de queso colombiano · esponjoso, tibio y tradicional con salsa de guayaba</div></div><div class="item-p">$8.500</div></div>
+      <div class="item"><div class="item-l"><div class="item-n">Torta de Chocolate</div><div class="item-d">Húmeda con ganache de chocolate y relleno de arequipe · para amantes del cacao y dulce de leche</div></div><div class="item-p">$8.500</div></div>
+      <div class="item"><div class="item-l"><div class="item-n">Torta de Zanahoria</div><div class="item-d">Con crema de queso y almendras · suave, cremosa y equilibrada</div></div><div class="item-p">$8.500</div></div>
+      <div class="item"><div class="item-l"><div class="item-n">Red Velvet</div><div class="item-d">Pastel de terciopelo rojo con crema de queso · elegante y visualmente impactante</div></div><div class="item-p">$8.500</div></div>
+      <div class="nota">Hojaldres del día disponibles en vitrina · consultar al barista</div>
+
+      <div class="sec-sep"><div class="sec-tit">Visítanos</div></div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:6.5pt;color:var(--muted);line-height:2.1;font-weight:300;margin-top:1mm">
+        <strong style="font-family:'Oswald',sans-serif;font-size:7pt;color:var(--choco);font-weight:400;letter-spacing:0.5px">📍 Ubicación</strong><br>
+        Parqueadero Los Magnolios · Vereda Tiquiza<br>
+        Local 002 · Chía, Cundinamarca<br><br>
+        <strong style="font-family:'Oswald',sans-serif;font-size:7pt;color:var(--choco);font-weight:400;letter-spacing:0.5px">📱 Síguenos</strong><br>
+        Instagram: @goldencupchia<br>
+        TikTok: @goldencupchia
+      </div>
+    </div>
+    <div class="nota">
+      Todos los precios incluyen IVA · Productos sujetos a disponibilidad<br>
+      Pregunta a nuestro barista por las especialidades del día
+    </div>
+  </div>
+
+</div><!-- /cara 2 -->
+
+<!-- Librería QR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  const URL_CARTA = "https://goldencupchia.github.io/carta";
+
+  function generarQR(canvasId, size) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    // Fondo crema
+    ctx.fillStyle = '#FEF7C2';
+    ctx.fillRect(0, 0, size, size);
+
+    // QR con qrcode.js en un div temporal
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+    new QRCode(div, {
+      text: URL_CARTA,
+      width: size,
+      height: size,
+      colorDark: '#4D0F0F',
+      colorLight: '#FEF7C2',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    setTimeout(() => {
+      const img = div.querySelector('img') || div.querySelector('canvas');
+      if (img) {
+        if (img.tagName === 'IMG') {
+          const i = new Image();
+          i.onload = () => { ctx.drawImage(i, 0, 0, size, size); };
+          i.src = img.src;
+        } else {
+          ctx.drawImage(img, 0, 0, size, size);
+        }
+      }
+      document.body.removeChild(div);
+    }, 200);
+  }
+
+  window.addEventListener('load', () => {
+    generarQR('qr-cara1', 83);
+    generarQR('qr-cara2', 60);
+  });
+</script>
+</body>
+</html>
