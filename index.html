@@ -21,23 +21,7 @@
     color: var(--choco);
   }
 
-  .instrucciones {
-    background: var(--choco);
-    color: var(--beige);
-    text-align: center;
-    padding: 14px 20px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 1px;
-  }
-  .instrucciones span {
-    opacity: 0.6;
-    font-size: 11px;
-    display: block;
-    margin-top: 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-  }
+  .instrucciones { display: none; }
   .btn-print {
     display: inline-block;
     margin-top: 8px;
@@ -273,7 +257,7 @@
     <div class="brand-slogan">Una taza dorada<br>para tu vida</div>
     <div class="brand-linea"></div>
     <!-- QR generado dinámicamente -->
-    <canvas id="qr-cara1" width="83" height="83" style="border-radius:3px;background:#FEF7C2;padding:4px;"></canvas>
+    <canvas id="qr-cara1" width="120" height="120" style="border-radius:3px;background:#FEF7C2;padding:4px;"></canvas>
     <div class="brand-slogan">Escanea · Carta Digital<br>Chía · 2026</div>
   </div>
 
@@ -343,146 +327,210 @@
 <!-- ══ CARA 2 ══ -->
 <div class="cara">
 
-  <div class="col-brand" style="justify-content:space-between;padding:8mm 6mm;">
+  <div class="col-brand" style="justify-content:space-between;padding:6mm 5mm;">
+
+    <!-- Encabezado marca -->
     <div style="text-align:center;">
       <div class="brand-cafe-bar">Café · Bar</div>
-      <div class="brand-nombre" style="font-size:20pt;">Golden<small style="font-size:14pt;">Cup</small></div>
-      <div class="brand-linea" style="margin:3mm auto;"></div>
+      <div class="brand-nombre" style="font-size:18pt;">Golden<small style="font-size:13pt;">Cup</small></div>
+      <div class="brand-linea" style="margin:2mm auto;"></div>
     </div>
 
-    <!-- Infográfico proceso del café -->
-    <svg viewBox="0 0 120 310" xmlns="http://www.w3.org/2000/svg"
-         style="width:100%;max-width:110px;margin:0 auto;display:block;opacity:0.9;">
+    <!-- Infografía espiral proceso del café — fiel a las fotos de la marca -->
+    <svg viewBox="0 0 130 290" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:118px;margin:0 auto;display:block;">
       <defs>
         <style>
-          .ic { fill:none; stroke:#E0C18D; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
-          .ic-fill { fill:rgba(224,193,141,0.15); stroke:#E0C18D; stroke-width:1.2; stroke-linecap:round; }
-          .lbl { font-family:'Oswald',sans-serif; font-size:6px; fill:#E0C18D; text-anchor:middle; letter-spacing:0.5px; opacity:0.85; }
-          .arr { fill:none; stroke:#E0C18D; stroke-width:0.8; marker-end:url(#ar); opacity:0.6; }
+          .s  { fill:none; stroke:#E0C18D; stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round; }
+          .sf { fill:rgba(224,193,141,0.18); stroke:#E0C18D; stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round; }
+          .lb { font-family:'Oswald',sans-serif; font-size:5.5px; fill:#E0C18D; text-anchor:middle; letter-spacing:0.8px; }
+          .ar { fill:none; stroke:#E0C18D; stroke-width:1; stroke-linecap:round; opacity:0.75; }
         </style>
-        <marker id="ar" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
-          <path d="M0,0 L4,2 L0,4 Z" fill="#E0C18D" opacity="0.6"/>
+        <marker id="tip" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto">
+          <path d="M0,0.5 L4,2.5 L0,4.5 Z" fill="#E0C18D" opacity="0.85"/>
         </marker>
       </defs>
 
-      <!-- 1. Semilla / Planta -->
-      <g transform="translate(60,20)">
-        <!-- brote -->
-        <line x1="0" y1="8" x2="0" y2="-2" class="ic"/>
-        <path d="M0,2 Q6,-4 10,-8" class="ic"/>
-        <path d="M0,0 Q-6,-4 -9,-8" class="ic"/>
-        <ellipse cx="0" cy="9" rx="4" ry="2" class="ic-fill"/>
+      <!-- ══ 1. PLANTA (abajo izq) ══ -->
+      <g transform="translate(28,268)">
+        <line x1="0" y1="6" x2="0" y2="-8" class="s"/>
+        <!-- hoja izquierda -->
+        <path d="M0,-2 Q-8,-8 -11,-14 Q-4,-10 0,-2" class="sf"/>
+        <!-- hoja derecha -->
+        <path d="M0,-4 Q8,-10 10,-16 Q3,-10 0,-4" class="sf"/>
+        <!-- hoja pequeña izq -->
+        <path d="M0,0 Q-5,-4 -7,-8 Q-2,-5 0,0" class="sf"/>
+        <!-- base tierra -->
+        <line x1="-6" y1="6" x2="6" y2="6" class="s"/>
+        <path d="M-6,6 Q0,9 6,6" class="s"/>
       </g>
-      <text x="60" y="38" class="lbl">CULTIVO</text>
+      <text x="28" y="282" class="lb">SEMILLA</text>
 
-      <!-- flecha -->
-      <path d="M60,41 Q75,46 75,52" class="arr"/>
+      <!-- flecha 1→2: abajo izq → abajo der -->
+      <path d="M42,264 Q65,270 78,262" class="ar" marker-end="url(#tip)"/>
 
-      <!-- 2. Cosecha / recolección -->
-      <g transform="translate(75,60)">
-        <circle cx="0" cy="-4" r="5" class="ic-fill"/>
-        <line x1="-3" y1="-1" x2="-8" y2="4" class="ic"/>
-        <line x1="3" y1="-1" x2="8" y2="4" class="ic"/>
-        <path d="M-7,4 Q0,8 7,4" class="ic"/>
-        <!-- cerezas -->
-        <circle cx="-10" cy="-8" r="2.5" class="ic-fill"/>
-        <circle cx="-6" cy="-11" r="2.5" class="ic-fill"/>
-        <circle cx="-2" cy="-9" r="2.5" class="ic-fill"/>
+      <!-- ══ 2. RAMA CON CEREZAS (abajo der) ══ -->
+      <g transform="translate(100,258)">
+        <!-- rama principal -->
+        <path d="M-8,10 Q-4,4 0,0 Q4,-4 8,-10" class="s"/>
+        <!-- ramita izq con cereza -->
+        <line x1="-4" y1="6" x2="-12" y2="4" class="s"/>
+        <circle cx="-14" cy="4" r="3" class="sf"/>
+        <circle cx="-11" cy="1" r="3" class="sf"/>
+        <!-- ramita der con cereza -->
+        <line x1="2" y1="0" x2="10" y2="-2" class="s"/>
+        <circle cx="12" cy="-2" r="3" class="sf"/>
+        <circle cx="9" cy="-5" r="3" class="sf"/>
+        <!-- hoja -->
+        <path d="M4,-5 Q10,-10 12,-16 Q5,-10 4,-5" class="sf"/>
       </g>
-      <text x="75" y="78" class="lbl">COSECHA</text>
+      <text x="100" y="275" class="lb">FLORACIÓN</text>
 
-      <!-- flecha -->
-      <path d="M65,81 Q50,86 46,92" class="arr"/>
+      <!-- flecha 2→3: abajo der → centro der -->
+      <path d="M108,248 Q116,232 108,218" class="ar" marker-end="url(#tip)"/>
 
-      <!-- 3. Secado (sol + granos) -->
-      <g transform="translate(42,100)">
-        <!-- sol -->
-        <circle cx="0" cy="0" r="5" class="ic-fill"/>
-        <line x1="0" y1="-8" x2="0" y2="-11" class="ic"/>
-        <line x1="0" y1="8" x2="0" y2="11" class="ic"/>
-        <line x1="8" y1="0" x2="11" y2="0" class="ic"/>
-        <line x1="-8" y1="0" x2="-11" y2="0" class="ic"/>
-        <line x1="5.5" y1="-5.5" x2="7.5" y2="-7.5" class="ic"/>
-        <line x1="-5.5" y1="-5.5" x2="-7.5" y2="-7.5" class="ic"/>
-        <line x1="5.5" y1="5.5" x2="7.5" y2="7.5" class="ic"/>
-        <line x1="-5.5" y1="5.5" x2="-7.5" y2="7.5" class="ic"/>
-      </g>
-      <text x="42" y="119" class="lbl">SECADO</text>
-
-      <!-- flecha -->
-      <path d="M55,115 Q70,118 74,124" class="arr"/>
-
-      <!-- 4. Saco / almacenamiento -->
-      <g transform="translate(78,132)">
-        <path d="M-10,-10 Q-12,0 -10,10 Q0,14 10,10 Q12,0 10,-10 Q0,-14 -10,-10Z" class="ic-fill"/>
-        <path d="M-7,-8 Q0,-4 7,-8" class="ic"/>
-        <ellipse cx="0" cy="-10" rx="5" ry="2" class="ic-fill"/>
-        <!-- granos arriba del saco -->
-        <ellipse cx="-4" cy="-17" rx="3" ry="2" transform="rotate(-20,-4,-17)" class="ic-fill"/>
-        <ellipse cx="2" cy="-19" rx="3" ry="2" transform="rotate(10,2,-19)" class="ic-fill"/>
-        <ellipse cx="7" cy="-16" rx="3" ry="2" transform="rotate(30,7,-16)" class="ic-fill"/>
-      </g>
-      <text x="78" y="152" class="lbl">ALMACÉN</text>
-
-      <!-- flecha -->
-      <path d="M65,155 Q50,160 46,166" class="arr"/>
-
-      <!-- 5. Tostado (máquina tostadora) -->
-      <g transform="translate(40,175)">
-        <!-- tolva -->
-        <path d="M-6,-12 L6,-12 L4,-4 L-4,-4 Z" class="ic-fill"/>
-        <!-- cuerpo máquina -->
-        <rect x="-9" y="-4" width="18" height="14" rx="2" class="ic-fill"/>
-        <!-- rueda -->
-        <circle cx="0" cy="3" r="5" class="ic"/>
-        <line x1="0" y1="-2" x2="0" y2="8" class="ic"/>
-        <line x1="-5" y1="3" x2="5" y2="3" class="ic"/>
-        <!-- manija -->
-        <line x1="9" y1="6" x2="14" y2="8" class="ic"/>
-        <circle cx="14" cy="8" r="1.5" class="ic-fill"/>
-      </g>
-      <text x="40" y="196" class="lbl">TOSTADO</text>
-
-      <!-- flecha -->
-      <path d="M55,199 Q70,202 74,208" class="arr"/>
-
-      <!-- 6. Molido (molino manual) -->
-      <g transform="translate(78,218)">
+      <!-- ══ 3. COSECHADORA (centro der) ══ -->
+      <g transform="translate(102,205)">
+        <!-- cabeza -->
+        <ellipse cx="0" cy="-16" rx="7" ry="7" class="sf"/>
+        <!-- pañuelo cabeza -->
+        <path d="M-7,-18 Q0,-24 7,-18" class="s"/>
         <!-- cuerpo -->
-        <rect x="-8" y="-8" width="16" height="16" rx="1" class="ic-fill"/>
-        <!-- manija arriba -->
-        <line x1="0" y1="-8" x2="0" y2="-14" class="ic"/>
-        <line x1="-4" y1="-14" x2="4" y2="-14" class="ic"/>
-        <circle cx="-4" cy="-14" r="1.5" class="ic-fill"/>
-        <!-- tolva -->
-        <path d="M-5,-8 L5,-8 L3,-3 L-3,-3 Z" class="ic-fill"/>
-        <!-- cajón abajo -->
-        <rect x="-8" y="8" width="16" height="5" rx="1" class="ic-fill"/>
+        <path d="M-7,-9 Q-9,0 -7,10" class="s"/>
+        <path d="M7,-9 Q9,0 7,10" class="s"/>
+        <path d="M-7,-9 Q0,-6 7,-9" class="s"/>
+        <!-- brazos: sostiene rama -->
+        <line x1="-7" y1="-4" x2="-16" y2="-6" class="s"/>
+        <line x1="7" y1="-4" x2="15" y2="-8" class="s"/>
+        <!-- canasta abajo -->
+        <path d="M-7,10 Q0,16 7,10" class="sf"/>
+        <ellipse cx="0" cy="10" rx="7" ry="3" class="sf"/>
+        <!-- cerezas en canasta -->
+        <circle cx="-3" cy="8" r="2" class="sf"/>
+        <circle cx="2" cy="7" r="2" class="sf"/>
+        <circle cx="0" cy="5" r="2" class="sf"/>
       </g>
-      <text x="78" y="238" class="lbl">MOLIDO</text>
+      <text x="102" y="222" class="lb">COSECHA</text>
 
-      <!-- flecha -->
-      <path d="M65,241 Q50,246 46,252" class="arr"/>
+      <!-- flecha 3→4: centro der → centro izq -->
+      <path d="M88,198 Q65,190 48,198" class="ar" marker-end="url(#tip)"/>
 
-      <!-- 7. Taza final -->
-      <g transform="translate(42,265)">
+      <!-- ══ 4. SOL + SECADO (centro izq) ══ -->
+      <g transform="translate(28,188)">
+        <!-- sol -->
+        <circle cx="0" cy="0" r="6" class="sf"/>
+        <!-- rayos -->
+        <line x1="0" y1="-9" x2="0" y2="-12" class="s"/>
+        <line x1="0" y1="9" x2="0" y2="12" class="s"/>
+        <line x1="9" y1="0" x2="12" y2="0" class="s"/>
+        <line x1="-9" y1="0" x2="-12" y2="0" class="s"/>
+        <line x1="6.4" y1="-6.4" x2="8.5" y2="-8.5" class="s"/>
+        <line x1="-6.4" y1="-6.4" x2="-8.5" y2="-8.5" class="s"/>
+        <line x1="6.4" y1="6.4" x2="8.5" y2="8.5" class="s"/>
+        <line x1="-6.4" y1="6.4" x2="-8.5" y2="8.5" class="s"/>
+        <!-- granos debajo del sol -->
+        <ellipse cx="-8" cy="18" rx="4" ry="2.5" transform="rotate(-15,-8,18)" class="sf"/>
+        <ellipse cx="0" cy="20" rx="4" ry="2.5" class="sf"/>
+        <ellipse cx="8" cy="18" rx="4" ry="2.5" transform="rotate(15,8,18)" class="sf"/>
+      </g>
+      <text x="28" y="216" class="lb">SECADO</text>
+
+      <!-- flecha 4→5: centro izq → arriba izq -->
+      <path d="M32,172 Q26,155 34,140" class="ar" marker-end="url(#tip)"/>
+
+      <!-- ══ 5. SACO FIQUE (arriba izq) ══ -->
+      <g transform="translate(36,122)">
+        <!-- saco cuerpo -->
+        <path d="M-13,14 Q-16,0 -13,-12 Q0,-18 13,-12 Q16,0 13,14 Q0,18 -13,14Z" class="sf"/>
+        <!-- costura superior -->
+        <path d="M-9,-10 Q0,-7 9,-10" class="s"/>
+        <!-- amarre arriba -->
+        <ellipse cx="0" cy="-13" rx="5" ry="3" class="sf"/>
+        <line x1="-2" y1="-16" x2="2" y2="-16" class="s"/>
+        <!-- granos derramados -->
+        <ellipse cx="16" cy="-4" rx="3.5" ry="2.2" transform="rotate(-20,16,-4)" class="sf"/>
+        <ellipse cx="18" cy="2" rx="3.5" ry="2.2" transform="rotate(10,18,2)" class="sf"/>
+        <ellipse cx="14" cy="7" rx="3.5" ry="2.2" transform="rotate(30,14,7)" class="sf"/>
+        <!-- texto COFFEE en saco -->
+      </g>
+      <text x="36" y="148" class="lb">ALMACÉN</text>
+
+      <!-- flecha 5→6: arriba izq → arriba der -->
+      <path d="M56,112 Q78,104 96,112" class="ar" marker-end="url(#tip)"/>
+
+      <!-- ══ 6. DESPULPADORA / TOSTADORA (arriba der) ══ -->
+      <g transform="translate(106,118)">
+        <!-- tolva entrada -->
+        <path d="M-8,-20 L8,-20 L5,-10 L-5,-10 Z" class="sf"/>
+        <!-- cuerpo máquina -->
+        <rect x="-10" y="-10" width="20" height="20" rx="3" class="sf"/>
+        <!-- visor circular -->
+        <circle cx="0" cy="2" r="6" class="s"/>
+        <circle cx="0" cy="2" r="3" class="s"/>
+        <!-- manija lateral -->
+        <line x1="10" y1="-4" x2="18" y2="-6" class="s"/>
+        <circle cx="18" cy="-6" r="2" class="sf"/>
+        <!-- salida abajo -->
+        <path d="M-4,10 L-3,18 L3,18 L4,10" class="sf"/>
+        <!-- granos saliendo -->
+        <circle cx="-2" cy="20" r="1.5" class="sf"/>
+        <circle cx="2" cy="21" r="1.5" class="sf"/>
+      </g>
+      <text x="106" y="146" class="lb">TOSTADO</text>
+
+      <!-- flecha 6→7: arriba der → tope der -->
+      <path d="M108,100 Q116,80 106,62" class="ar" marker-end="url(#tip)"/>
+
+      <!-- ══ 7. MOLINO MANUAL (tope der) ══ -->
+      <g transform="translate(100,46)">
+        <!-- manija en T -->
+        <line x1="-6" y1="-20" x2="6" y2="-20" class="s"/>
+        <line x1="0" y1="-20" x2="0" y2="-14" class="s"/>
+        <circle cx="-6" cy="-20" r="2" class="sf"/>
+        <circle cx="6" cy="-20" r="2" class="sf"/>
+        <!-- tolva superior -->
+        <path d="M-8,-14 L8,-14 L6,-6 L-6,-6 Z" class="sf"/>
+        <!-- cuerpo caja -->
+        <rect x="-10" y="-6" width="20" height="18" rx="2" class="sf"/>
+        <!-- mecanismo interno -->
+        <circle cx="0" cy="4" r="4" class="s"/>
+        <line x1="-4" y1="4" x2="4" y2="4" class="s"/>
+        <line x1="0" y1="0" x2="0" y2="8" class="s"/>
+        <!-- cajón extractor -->
+        <rect x="-9" y="12" width="18" height="7" rx="1" class="sf"/>
+        <line x1="0" y1="14" x2="0" y2="18" class="s"/>
+      </g>
+      <text x="100" y="66" class="lb">MOLIDO</text>
+
+      <!-- flecha 7→8: tope der → tope izq -->
+      <path d="M84,38 Q65,28 46,36" class="ar" marker-end="url(#tip)"/>
+
+      <!-- ══ 8. TAZA (tope izq) ══ -->
+      <g transform="translate(28,40)">
         <!-- platillo -->
-        <ellipse cx="0" cy="12" rx="14" ry="3" class="ic-fill"/>
-        <!-- taza -->
-        <path d="M-10,12 L-9,-4 Q-9,-10 0,-10 Q9,-10 9,-4 L10,12 Z" class="ic-fill"/>
+        <ellipse cx="0" cy="16" rx="16" ry="4" class="sf"/>
+        <!-- taza cuerpo -->
+        <path d="M-12,16 L-10,-4 Q-10,-12 0,-12 Q10,-12 10,-4 L12,16 Z" class="sf"/>
         <!-- asa -->
-        <path d="M10,0 Q18,0 18,6 Q18,12 10,12" class="ic"/>
+        <path d="M12,0 Q22,-1 22,6 Q22,14 12,14" class="s"/>
+        <!-- café dentro -->
+        <ellipse cx="0" cy="-4" rx="8" ry="3" class="sf"/>
         <!-- vapor -->
-        <path d="M-4,-12 Q-2,-16 -4,-20" class="ic" stroke-width="0.8" opacity="0.7"/>
-        <path d="M0,-13 Q2,-17 0,-21" class="ic" stroke-width="0.8" opacity="0.7"/>
-        <path d="M4,-12 Q6,-16 4,-20" class="ic" stroke-width="0.8" opacity="0.7"/>
+        <path d="M-5,-14 Q-3,-19 -5,-24" class="s" stroke-width="0.9" opacity="0.8"/>
+        <path d="M0,-15 Q2,-20 0,-25" class="s" stroke-width="0.9" opacity="0.8"/>
+        <path d="M5,-14 Q7,-19 5,-24" class="s" stroke-width="0.9" opacity="0.8"/>
       </g>
-      <text x="42" y="287" class="lbl">EN TU TAZA</text>
+      <text x="28" y="20" class="lb">EN TU TAZA ☕</text>
+
     </svg>
 
-    <div class="brand-linea" style="margin:2mm auto;"></div>
-    <div class="brand-slogan" style="font-size:5.5pt;">Todos los precios<br>incluyen IVA</div>
-    <canvas id="qr-cara2" width="60" height="60" style="border-radius:2px;background:#FEF7C2;padding:3px;margin-top:2mm;"></canvas>
+    <!-- Footer columna -->
+    <div style="text-align:center;">
+      <div class="brand-linea" style="margin:2mm auto;"></div>
+      <div class="brand-slogan" style="font-size:5pt;opacity:0.75;">Todos los precios<br>incluyen IVA</div>
+      <canvas id="qr-cara2" width="58" height="58" style="border-radius:2px;background:#FEF7C2;padding:3px;margin-top:2mm;display:block;margin-left:auto;margin-right:auto;"></canvas>
+    </div>
+
   </div>
 
   <!-- Col 1: Lattes + Infusiones -->
@@ -592,7 +640,7 @@
   }
 
   window.addEventListener('load', () => {
-    generarQR('qr-cara1', 83);
+    generarQR('qr-cara1', 120);
     generarQR('qr-cara2', 60);
   });
 </script>
